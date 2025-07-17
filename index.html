@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональный лендинг</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585; 
+            --text: #333;
+        }
+        
+        * {
+            margin: 0 ;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              word-wrap: break-word; /* устаревшее, рекомендуется использовать overflow-wrap */
+    overflow-wrap: break-word; /* современный стандарт */
+           
+        }
+        
+        body {
+             width: 100%;
+    overflow-x: hidden;
+            color: var(--text);
+            line-height: 1.6;
+        
+            background-color: var(--light);
+        }
+        
+        /* Типография */
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.8rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Анимации */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+            10% {
+                transform: rotate(14deg);
+            }
+            20% {
+                transform: rotate(-8deg);
+            }
+            30% {
+                transform: rotate(14deg);
+            }
+            40% {
+                transform: rotate(-4deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            60% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+        
+        /* Лейаут */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        /* Хедер */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10rem 0 5rem;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 50px;
+            padding-right: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 50px;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .hero .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .hero .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero .btn-secondary {
+            color: white;
+            border-color: white;
+        }
+        
+        .hero .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Особенности */
+        .features {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        /* О нас */
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width:200px;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .skills {
+            margin-top: 2rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        /* Портфолио */
+        .portfolio {
+            background-color: white;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(67, 97, 238, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-overlay a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay h3,
+        .portfolio-item:hover .portfolio-overlay p,
+        .portfolio-item:hover .portfolio-overlay a {
+            transform: translateY(0);
+        }
+        
+        /* Отзывы */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin: 0 1rem;
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--light);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+        }
+        
+        .testimonial-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        /* Команда */
+        .team {
+            background-color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .team-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            margin: 0 0.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Цены */
+        .pricing {
+            background-color: var(--light);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'Популярный';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 2.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--text);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Контакты */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 200px;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Футер */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Анимации при скролле */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Медиа запросы */
+        @media (max-width: 992px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                padding: 7rem 0 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+            }
+            .box{
+                 width: 100%;
+            max-width: 100%;
+            padding: 15px;  
+            }
+        }
+        
+        /* Дополнительные анимации */
+        .wave {
+            animation-name: wave;
+            animation-duration: 2.5s;
+            animation-iteration-count: infinite;
+            transform-origin: 70% 70%;
+            display: inline-block;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Фигуры */
+        .shape {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.1);
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 260px solid rgba(67, 97, 238, 0.05);
+        }
+        
+        /* Анимация загрузки */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    
+    </style>
+</head>
+<body>
+    <!-- Прелоадер -->
+ <div class="box">
+
+       <div class="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Хедер -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo animate-on-scroll">
+                <i class="fas fa-rocket"></i> BrandName
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#features" class="nav-link">Возможности</a></li>
+                <li><a href="#about" class="nav-link">О нас</a></li>
+                <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+              
+            </ul>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="shape circle animate-on-scroll" style="top: -150px; left: -150px;"></div>
+        <div class="shape triangle animate-on-scroll" style="bottom: -100px; right: -100px;"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate-on-scroll">
+                    <h1>Создаем потрясающие цифровые продукты</h1>
+                    <p>Мы помогаем бизнесу расти с помощью инновационных решений в области дизайна и разработки. Наши продукты сочетают в себе красоту и функциональность.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn btn-primary">Начать проект</a>
+                        <a href="#about" class="btn btn-secondary">Узнать больше</a>
+                    </div>
+                </div>
+                <div class="hero-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hero Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Наши возможности</h2>
+                <p>Мы предлагаем комплексные решения для вашего бизнеса</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Быстрая работа</h3>
+                    <p>Наша команда работает быстро и эффективно, чтобы вы получили результат в кратчайшие сроки.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Адаптивный дизайн</h3>
+                    <p>Все наши продукты идеально отображаются на любых устройствах и экранах.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Безопасность</h3>
+                    <p>Мы уделяем особое внимание безопасности ваших данных и приложений.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Аналитика</h3>
+                    <p>Получайте детальную аналитику и отчеты о работе вашего продукта.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Наша команда поддержки всегда готова помочь вам в любое время.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Гибкость</h3>
+                    <p>Мы адаптируем наши решения под ваши уникальные потребности и требования.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>О нашей компании</h2>
+                <p>Узнайте больше о нашей команде и подходе к работе</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Team">
+                </div>
+                
+                <div class="about-text animate-on-scroll">
+                    <h3>Мы создаем цифровые продукты, которые помогают бизнесу расти</h3>
+                    <p>Наша компания была основана в 2010 году с целью предоставления высококачественных цифровых решений для бизнеса любого масштаба. За это время мы реализовали более 500 проектов для клиентов из 20 стран мира.</p>
+                    <p>Мы гордимся нашей командой профессионалов, которые сочетают в себе креативность, технические навыки и глубокое понимание бизнес-процессов.</p>
+                    
+                    <div class="skills">
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Веб-разработка</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Дизайн</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Маркетинг</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Связаться с нами</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Наши работы</h2>
+                <p>Посмотрите примеры наших последних проектов</p>
+            </div>
+            
+            <div class="portfolio-filter animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="web">Веб-сайты</button>
+                <button class="filter-btn" data-filter="app">Приложения</button>
+                <button class="filter-btn" data-filter="design">Дизайн</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item animate-on-scroll" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Project 1" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Корпоративный сайт</h3>
+                        <p>Веб-разработка</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Мобильное приложение</h3>
+                        <p>iOS & Android</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Project 3" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Брендинг</h3>
+                        <p>Графический дизайн</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80" alt="Project 4" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Интернет-магазин</h3>
+                        <p>E-commerce</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 5" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Фитнес-приложение</h3>
+                        <p>Health & Fitness</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 6" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>UI/UX Дизайн</h3>
+                        <p>Пользовательские интерфейсы</p>
+                        <div>
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Отзывы клиентов</h2>
+                <p>Что говорят о нас наши клиенты</p>
+            </div>
+            
+            <div class="testimonials-slider animate-on-scroll">
+                <div class="testimonial-item">
+                    <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client 1" class="testimonial-img">
+                    <p class="testimonial-text">"Работа с этой командой была потрясающим опытом. Они не только выполнили проект вовремя, но и предложили инновационные решения, которые помогли нашему бизнесу вырасти на 30%."</p>
+                    <h4 class="testimonial-author">Анна Смирнова</h4>
+                    <p class="testimonial-role">Директор, ООО "ТехноЛогика"</p>
+                </div>
+                
+                <div class="testimonial-item">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 2" class="testimonial-img">
+                    <p class="testimonial-text">"Мы сотрудничаем с этой компанией уже более 3 лет, и каждый проект превосходит наши ожидания. Их внимание к деталям и профессионализм не имеют себе равных."</p>
+                    <h4 class="testimonial-author">Иван Петров</h4>
+                    <p class="testimonial-role">CEO, Digital Solutions</p>
+                </div>
+                
+                <div class="testimonial-item">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client 3" class="testimonial-img">
+                    <p class="testimonial-text">"После запуска нашего нового сайта, разработанного этой командой, количество лидов увеличилось в 2 раза. Они действительно понимают, как цифровые продукты могут трансформировать бизнес."</p>
+                    <h4 class="testimonial-author">Елена Козлова</h4>
+                    <p class="testimonial-role">Маркетинг-директор, GlobalBrand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Команда -->
+    <section class="team">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Наша команда</h2>
+                <p>Познакомьтесь с нашими талантливыми специалистами</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member animate-on-scroll">
+                    <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Team Member 1" class="team-img">
+                    <div class="team-info">
+                        <h3>Алексей Иванов</h3>
+                        <p>Главный разработчик</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member animate-on-scroll">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Team Member 2" class="team-img">
+                    <div class="team-info">
+                        <h3>Мария Сидорова</h3>
+                        <p>UI/UX Дизайнер</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member animate-on-scroll">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team Member 3" class="team-img">
+                    <div class="team-info">
+                        <h3>Дмитрий Кузнецов</h3>
+                        <p>Маркетолог</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member animate-on-scroll">
+                    <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Team Member 4" class="team-img">
+                    <div class="team-info">
+                        <h3>Ольга Соколова</h3>
+                        <p>Менеджер проектов</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Наши тарифы</h2>
+                <p>Гибкие цены для любого бюджета</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-name">Старт</div>
+                    <div class="pricing-price">$299 <span>/ проект</span></div>
+                    <ul class="pricing-features">
+                        <li>1 страница сайта</li>
+                        <li>Адаптивный дизайн</li>
+                        <li>Базовый SEO</li>
+                        <li>Техническая поддержка 1 месяц</li>
+                        <li>Срок выполнения: 1-2 недели</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Выбрать</a>
+                </div>
+                
+                <div class="pricing-card popular animate-on-scroll">
+                    <div class="pricing-name">Бизнес</div>
+                    <div class="pricing-price">$799 <span>/ проект</span></div>
+                    <ul class="pricing-features">
+                        <li>До 5 страниц сайта</li>
+                        <li>Индивидуальный дизайн</li>
+                        <li>Продвинутый SEO</li>
+                        <li>Техническая поддержка 3 месяца</li>
+                        <li>Срок выполнения: 2-4 недели</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Выбрать</a>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-name">Премиум</div>
+                    <div class="pricing-price">$1499 <span>/ проект</span></div>
+                    <ul class="pricing-features">
+                        <li>Неограниченное количество страниц</li>
+                        <li>Эксклюзивный дизайн</li>
+                        <li>Полный пакет SEO</li>
+                        <li>Техническая поддержка 6 месяцев</li>
+                        <li>Срок выполнения: 4-8 недель</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Свяжитесь с нами</h2>
+                <p>Готовы начать проект? Напишите нам!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>ул. Примерная, 123, Москва, Россия</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (123) 456-78-90</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Часы работы</h3>
+                            <p>Пн-Пт: 9:00 - 18:00</p>
+                            <p>Сб-Вс: выходной</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Ваше имя" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Ваш Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Тема">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Ваше сообщение" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <p>Мы - креативная команда профессионалов, специализирующаяся на создании цифровых продуктов для бизнеса любого масштаба.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Полезные ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Услуги</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Веб-разработка</a></li>
+                        <li><a href="#">Мобильные приложения</a></li>
+                        <li><a href="#">UI/UX Дизайн</a></li>
+                        <li><a href="#">Цифровой маркетинг</a></li>
+                        <li><a href="#">SEO оптимизация</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Подписаться</h3>
+                    <p>Подпишитесь на нашу рассылку, чтобы получать последние новости и обновления.</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Ваш Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BrandName. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <a href="#home" id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+ </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Прелоадер
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+        
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        const navItems = document.querySelectorAll('.nav-link');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Фиксированный хедер при скролле
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Кнопка "Наверх"
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 200) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+            }
+        });
+        
+        // Анимация при скролле
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Фильтрация портфолио
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Удаляем активный класс у всех кнопок
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Анимация прогресс-баров
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+        
+        // Запускаем анимацию навыков при попадании в зону видимости
+        const skillsSection = document.querySelector('.skills');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkills();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+        
+        // Простая валидация формы
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Здесь можно добавить AJAX отправку формы
+                alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+                this.reset();
+            });
+        }
+
+          // Добавляем проверку на горизонтальный скролл
+        function checkHorizontalScroll() {
+            const body = document.body;
+            const html = document.documentElement;
+            
+            if (body.scrollWidth > html.clientWidth || 
+                html.scrollWidth > html.clientWidth) {
+                console.log('Обнаружен горизонтальный скролл');
+                // Находим элементы, которые могут вызывать проблему
+                const wideElements = document.querySelectorAll('*');
+                wideElements.forEach(el => {
+                    if (el.scrollWidth > html.clientWidth) {
+                        console.log('Широкий элемент:', el);
+                        el.style.maxWidth = '100%';
+                        el.style.overflowX = 'hidden';
+                    }
+                });
+            }
+        }
+        
+        // Проверяем при загрузке и изменении размера
+        window.addEventListener('load', checkHorizontalScroll);
+        window.addEventListener('resize', checkHorizontalScroll);
+    </script>
+</body>
+</html>
